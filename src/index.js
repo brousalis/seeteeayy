@@ -6,6 +6,8 @@ import './index.css';
 
 import App from './components/App';
 
+const rootEl = document.querySelector('#root');
+
 const Root = () => {
   return (
     <BrowserRouter>
@@ -14,4 +16,4 @@ const Root = () => {
   )
 }
 
-render(<Root />, document.querySelector('#root'))
+render(<Root />, rootEl)

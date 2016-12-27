@@ -5,7 +5,7 @@ import Route from './Route';
 import RouteDirection from './RouteDirection';
 import RouteStop from './RouteStop';
 
-class App extends React.Component {
+class RouteContainer extends React.Component {
   constructor() {
     super();
 
@@ -19,9 +19,8 @@ class App extends React.Component {
       stops: []
     };
 
-    this.selectRoute = this.selectRoute.bind(this);
-    this.selectDirection = this.selectDirection.bind(this);
-    this.selectStop = this.selectStop.bind(this);
+    this.onSelectRoute = this.onSelectRoute.bind(this);
+    this.onSelectDirection = this.onSelectDirection.bind(this);
     this.getDirections = this.getDirections.bind(this);
     this.getStops = this.getStops.bind(this);
   }
@@ -36,44 +35,41 @@ class App extends React.Component {
     });
   }
 
-  selectRoute(e) {
-    const route = e.target.value;
+  onSelectRoute(route) {
+    this.setState({route, directions: [], stops: [], direction: null, stop: null})
     this.getDirections(route);
-    this.setState({route, direction: null})
   }
 
-  selectDirection(e) {
-    const direction = e.target.value;
-    this.getStops(this.state.route, direction);
+  onSelectDirection(direction) {
     this.setState({direction, stop: null})
-  }
-
-  selectStop(e) {
-    const stop = e.target.value;
-    this.setState({stop})
+    this.getStops(this.state.route, direction);
   }
 
   getDirections(route) {
     this.api.routeDirections(route, (err, data) => {
-      this.setState({directions: data})
+      if (!Array.isArray(data)) data = [data];
+      const direction = data[0];
+      this.setState({directions: data, direction})
+      this.getStops(this.state.route, direction)
     });
   }
 
   getStops(route, direction) {
     this.api.stops(route, direction, (err, data) => {
       this.setState({stops: data})
+      this.props.onSelectStop(data[0])
     });
   }
 
   render() {
     return (
       <div>
-        <Route routes={this.state.routes} selectRoute={this.selectRoute} />
-        <RouteDirection route={this.state.route} directions={this.state.directions} selectDirection={this.selectDirection} />
-        <RouteStop route={this.state.route} direction={this.state.direction} stops={this.state.stops} selectStop={this.selectStop} />
+        <Route routes={this.state.routes} onSelectRoute={this.onSelectRoute} />
+        <RouteDirection route={this.state.route} directions={this.state.directions} onSelectDirection={this.onSelectDirection} />
+        <RouteStop route={this.state.route} direction={this.state.direction} stops={this.state.stops} onSelectStop={this.props.onSelectStop} />
       </div>
     );
   }
 }
 
-export default App;
+export default RouteContainer;

@@ -9,8 +9,7 @@
     "cta-bus-tracker": "^0.0.2",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
-    "react-router": "4.0.0-alpha.6",
-    "styled-components": "^1.2.1"
+    "react-router": "4.0.0-alpha.6"
   },
   "scripts": {
     "start": "react-scripts start",

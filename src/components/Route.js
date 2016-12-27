@@ -18,7 +18,7 @@ class Route extends React.Component {
     }
 
     return (
-      <select defaultValue="null" onChange={(e) => this.props.selectRoute(e)}>
+      <select defaultValue="null" onChange={(e) => this.props.onSelectRoute(e.target.value)}>
         <option value="null">Select a Route</option>
         {this.props.routes.map(this.renderRoute)}
       </select>

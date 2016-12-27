@@ -13,7 +13,7 @@ class RouteDirection extends React.Component {
     }
 
     return (
-      <select className="routeDirections" onChange={(e) => this.props.selectDirection(e)}>
+      <select className="routeDirections" onChange={(e) => this.props.onSelectDirection(e.target.value)}>
         {this.props.directions.map(this.renderDirections)}
       </select>
     );

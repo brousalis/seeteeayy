@@ -13,7 +13,7 @@ class RouteStop extends React.Component {
     }
 
     return (
-      <select className="routeStop">
+      <select className="routeStop" onChange={(e) => this.props.onSelectStop(e.target.value)}>
         {this.props.stops.map(this.renderStops)}
       </select>
     );
