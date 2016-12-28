@@ -33,11 +33,13 @@ body
   padding: 0
 
 .row
-  display: flex
-  flex-direction: row
+  @media (min-width: 940px)
+    display: flex
+    flex-direction: row
 
 .column
-  flex: 1
+  @media (min-width: 940px)
+    flex: 1
 
 .select
   position: relative
@@ -87,6 +89,7 @@ body
   padding: 20px $gutter
   font-size: 48px
   background-color: #28BA6D
+  position: relative
   color: #fff
   @include longshadow(darken(#28BA6D, 5%))
   overflow: hidden
@@ -128,3 +131,22 @@ body
   font-size: 48px
   margin-top: 8px
   font-weight: bold
+
+.fav
+  position: absolute
+  right: $gutter + 5
+  top: $gutter + 5
+
+  &.active .star
+    opacity: 1
+
+.star
+  cursor: pointer
+  fill: yellow
+  opacity: 0.3
+  transition: all .2s
+
+.star:hover
+  transform: scale(1.5) rotate(-15deg)
+  fill: yellow
+  opacity: 1

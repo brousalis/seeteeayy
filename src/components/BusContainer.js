@@ -2,6 +2,7 @@ import React from 'react';
 import CTA from '../cta';
 
 import Bus from './Bus';
+import Fav from './Fav';
 
 class BusContainer extends React.Component {
   constructor() {
@@ -24,7 +25,6 @@ class BusContainer extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.timer);
-    clearInterval(this.refreshTimer);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -65,7 +65,10 @@ class BusContainer extends React.Component {
 
     return (
       <div>
-        <h1 className="bus-stop">{this.props.stop.stpnm}</h1>
+        <h1 className="bus-stop">
+          {this.props.stop.stpnm}
+          <Fav stopId={this.props.stop.stpid} routeId={this.props.route} />
+        </h1>
         <div className="bus-timer">{this.state.time.toLocaleTimeString()}</div>
         <div className="bus-list">
           {

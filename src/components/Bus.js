@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 
+import FavService from './FavService';
+
 import { minutesUntil } from '../helpers';
 
 class Bus extends Component {
+  componentWillMount() {
+
+  }
+
   render() {
     let timeUntil = minutesUntil(this.props.time, this.props.prdtm);
 

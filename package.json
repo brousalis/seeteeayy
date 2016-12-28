@@ -7,7 +7,7 @@
     "react-scripts": "0.8.4"
   },
   "dependencies": {
-    "cta-bus-tracker": "^0.0.2",
+    "cta-bus-tracker": "brousalis/Node-CTA-Bus-Tracker",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-router": "4.0.0-alpha.6"
