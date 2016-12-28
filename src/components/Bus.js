@@ -6,19 +6,17 @@ class Bus extends Component {
   render() {
     let timeUntil = minutesUntil(this.props.time, this.props.prdtm);
 
-    if (timeUntil <= 1) {
-      timeUntil = "APPROACHING"
-    } else {
-      timeUntil = `${timeUntil} minutes`
-    }
+    timeUntil = timeUntil <= 1 ? "APPROACHING" : `${timeUntil} minutes`;
 
     if (timeUntil <= 0) {
       return null;
     }
 
     return (
-      <div className="bus">
-        {this.props.rt} to {this.props.des} in {timeUntil}
+      <div className="column">
+        {this.props.rt} to {this.props.des} 
+        <br />
+        {timeUntil}
       </div>
     )
   }

@@ -63,15 +63,15 @@ class RouteContainer extends React.Component {
 
   render() {
     return (
-      <div>
-        <Route
+      <div className="row">
+        <Route className="column"
           routes={this.state.routes}
           onSelectRoute={this.onSelectRoute} />
-        <RouteDirection
+        <RouteDirection className="column"
           route={this.props.route}
           directions={this.state.directions}
           onSelectDirection={this.onSelectDirection} />
-        <RouteStop
+        <RouteStop className="column"
           route={this.props.route}
           direction={this.props.direction}
           stops={this.state.stops}

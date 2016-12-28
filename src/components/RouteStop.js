@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Select from './ui/Select';
+
 class RouteStop extends React.Component {
   constructor() {
     super();
@@ -26,10 +28,10 @@ class RouteStop extends React.Component {
     }
 
     return (
-      <select onChange={this.handleOnChange}>
+      <Select value={this.props.stop} onChange={this.handleOnChange}>
         <option value="">Select Stop</option>
         {this.props.stops.map(this.renderStops)}
-      </select>
+      </Select>
     );
   }
 }

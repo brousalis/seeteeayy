@@ -1,5 +1,7 @@
 import React from 'react';
-import Loading from './Loading';
+
+import Loading from './ui/Loading';
+import Select from './ui/Select';
 
 class Route extends React.Component {
   renderRoute(route) {
@@ -18,10 +20,10 @@ class Route extends React.Component {
     }
 
     return (
-      <select onChange={(e) => this.props.onSelectRoute(e.target.value)}>
+      <Select value={this.props.route} onChange={(e) => this.props.onSelectRoute(e.target.value)}>
         <option value="">Select a Route</option>
         {this.props.routes.map(this.renderRoute)}
-      </select>
+      </Select>
     );
   }
 }

@@ -62,9 +62,14 @@ class BusContainer extends React.Component {
       <div>
         <h1 className="busStop">{this.props.stop.stpnm}</h1>
         <div>{this.state.time.toLocaleTimeString()}</div>
-        {this.state.predictions.length > 0
-          ? this.state.predictions.map(this.renderStop)
-          : <p>No service at this time</p>}
+        <br />
+        <div className="row">
+          {
+            this.state.predictions.length > 0
+              ? this.state.predictions.map(this.renderStop)
+              : <p>No service at this time</p>
+          }
+        </div>
       </div>
     );
   }
