@@ -32,10 +32,15 @@ class BusContainer extends React.Component {
       return null;
     }
 
-    const stops = {stopIds: [nextProps.stop.stpid]};
+    const stops = {
+      stopIds: [nextProps.stop.stpid],
+      routeIds: [this.props.route],
+      top: 100
+    };
 
     CTA.predictionsByStop(stops, (err, data) => {
       if (data) {
+        if (!Array.isArray(data)) data = [data];
         this.setState({predictions: data});
       } else {
         this.setState({predictions: []});

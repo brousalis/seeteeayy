@@ -69,6 +69,7 @@ class RouteContainer extends React.Component {
           onSelectRoute={this.onSelectRoute} />
         <RouteDirection className="column"
           route={this.props.route}
+          direction={this.props.direction}
           directions={this.state.directions}
           onSelectDirection={this.onSelectDirection} />
         <RouteStop className="column"

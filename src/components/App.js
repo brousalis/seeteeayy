@@ -49,7 +49,9 @@ class App extends React.Component {
           selectRoute={this.selectRoute}
           selectDirection={this.selectDirection}
           selectStop={this.selectStop} />
-        <BusContainer stop={this.state.stop} />
+        <BusContainer
+          route={this.state.route}
+          stop={this.state.stop} />
       </div>
     );
   }
