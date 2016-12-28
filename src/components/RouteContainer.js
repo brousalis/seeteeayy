@@ -31,11 +31,16 @@ class RouteContainer extends React.Component {
 
   onSelectRoute(route) {
     this.props.selectRoute(route);
+    this.props.selectDirection("");
+    this.props.selectStop("");
+    if (route === "") return;
     this.getDirections(route);
   }
 
   onSelectDirection(direction) {
     this.props.selectDirection(direction);
+    this.props.selectStop("");
+    if (direction === "") return;
     this.getStops(this.props.route, direction);
   }
 

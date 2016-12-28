@@ -21,12 +21,12 @@ class RouteStop extends React.Component {
   }
 
   render() {
-    if (this.props.stops.length === 0 || this.props.direction === null) {
+    if (this.props.stops.length === 0 || this.props.direction === "") {
       return null;
     }
 
     return (
-      <select className="routeStop" onChange={this.handleOnChange}>
+      <select onChange={this.handleOnChange}>
         <option value="">Select Stop</option>
         {this.props.stops.map(this.renderStops)}
       </select>

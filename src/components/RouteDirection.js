@@ -8,13 +8,13 @@ class RouteDirection extends React.Component {
   }
 
   render() {
-    if (this.props.directions.length === 0 || this.props.route === null) {
+    if (this.props.directions.length === 0 || this.props.route === "") {
       return null;
     }
 
     return (
       <select onChange={(e) => this.props.onSelectDirection(e.target.value)}>
-        <option value="null">Select Direction</option>
+        <option value="">Select Direction</option>
         {this.props.directions.map(this.renderDirections)}
       </select>
     );

@@ -8,9 +8,9 @@ class App extends React.Component {
     super();
 
     this.state = {
-      route: null,
-      direction: null,
-      stop: null
+      route: "",
+      direction: "",
+      stop: ""
     };
 
     this.selectRoute = this.selectRoute.bind(this);
