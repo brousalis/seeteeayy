@@ -8,7 +8,6 @@ class RouteDirection extends React.Component {
   }
 
   render() {
-    console.log(this.props.route)
     if (this.props.directions.length === 0 || this.props.route === null) {
       return null;
     }

@@ -18,6 +18,10 @@ class App extends React.Component {
     this.selectStop = this.selectStop.bind(this);
   }
 
+  componentWillUnmount() {
+    clearInterval(this.refreshTimer);
+  }
+
   selectRoute(route) {
     this.setState({route});
   }
@@ -28,6 +32,11 @@ class App extends React.Component {
 
   selectStop(stop) {
     this.setState({stop});
+
+    this.refreshTimer = setInterval(
+      () => this.setState({stop: this.state.stop}),
+      60000
+    );
   }
 
   render() {

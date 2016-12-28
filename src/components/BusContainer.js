@@ -24,10 +24,10 @@ class BusContainer extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.timer);
+    clearInterval(this.refreshTimer);
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
     if (!nextProps.stop) {
       return null;
     }
