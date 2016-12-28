@@ -13,10 +13,12 @@ class Bus extends Component {
     }
 
     return (
-      <div className="column">
-        {this.props.rt} to {this.props.des} 
-        <br />
-        {timeUntil}
+      <div className="bus">
+        <div className="bus__meta">
+          <div className="bus__route">{this.props.rt}</div>
+          <div className="bus__dest">to {this.props.des}</div>
+        </div>
+        <span className="bus__time">{timeUntil}</span>
       </div>
     )
   }

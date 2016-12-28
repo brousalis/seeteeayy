@@ -60,10 +60,9 @@ class BusContainer extends React.Component {
 
     return (
       <div>
-        <h1 className="busStop">{this.props.stop.stpnm}</h1>
-        <div>{this.state.time.toLocaleTimeString()}</div>
-        <br />
-        <div className="row">
+        <h1 className="bus-stop">{this.props.stop.stpnm}</h1>
+        <div className="bus-timer">{this.state.time.toLocaleTimeString()}</div>
+        <div className="bus-list">
           {
             this.state.predictions.length > 0
               ? this.state.predictions.map(this.renderStop)
