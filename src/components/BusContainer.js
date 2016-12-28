@@ -66,7 +66,7 @@ class BusContainer extends React.Component {
           {
             this.state.predictions.length > 0
               ? this.state.predictions.map(this.renderStop)
-              : <p>No service at this time</p>
+              : <div className="bus__noservice">No service at this time</div>
           }
         </div>
       </div>
