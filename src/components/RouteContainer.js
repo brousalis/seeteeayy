@@ -10,10 +10,6 @@ class RouteContainer extends React.Component {
     super();
 
     this.state = {
-      route: null,
-      direction: null,
-      stop: null,
-
       routes: [],
       directions: [],
       stops: []
@@ -21,52 +17,60 @@ class RouteContainer extends React.Component {
 
     this.onSelectRoute = this.onSelectRoute.bind(this);
     this.onSelectDirection = this.onSelectDirection.bind(this);
+    this.onSelectStop = this.onSelectStop.bind(this);
+
     this.getDirections = this.getDirections.bind(this);
     this.getStops = this.getStops.bind(this);
   }
 
-  componentWillMount() {
-    this.api = CTA;
-  }
-
   componentDidMount() {
-    this.api.routes((err, data) => {
+    CTA.routes((err, data) => {
       this.setState({routes: data});
     });
   }
 
   onSelectRoute(route) {
-    this.setState({route, directions: [], stops: [], direction: null, stop: null})
+    this.props.selectRoute(route);
     this.getDirections(route);
   }
 
   onSelectDirection(direction) {
-    this.setState({direction, stop: null})
-    this.getStops(this.state.route, direction);
+    this.props.selectDirection(direction);
+    this.getStops(this.props.route, direction);
+  }
+
+  onSelectStop(stop) {
+    this.props.selectStop(stop);
   }
 
   getDirections(route) {
-    this.api.routeDirections(route, (err, data) => {
+    CTA.routeDirections(route, (err, data) => {
       if (!Array.isArray(data)) data = [data];
-      const direction = data[0];
-      this.setState({directions: data, direction})
-      this.getStops(this.state.route, direction)
+      this.setState({directions: data});
     });
   }
 
   getStops(route, direction) {
-    this.api.stops(route, direction, (err, data) => {
+    CTA.stops(route, direction, (err, data) => {
       this.setState({stops: data})
-      this.props.onSelectStop(data[0])
     });
   }
 
   render() {
     return (
       <div>
-        <Route routes={this.state.routes} onSelectRoute={this.onSelectRoute} />
-        <RouteDirection route={this.state.route} directions={this.state.directions} onSelectDirection={this.onSelectDirection} />
-        <RouteStop route={this.state.route} direction={this.state.direction} stops={this.state.stops} onSelectStop={this.props.onSelectStop} />
+        <Route
+          routes={this.state.routes}
+          onSelectRoute={this.onSelectRoute} />
+        <RouteDirection
+          route={this.props.route}
+          directions={this.state.directions}
+          onSelectDirection={this.onSelectDirection} />
+        <RouteStop
+          route={this.props.route}
+          direction={this.props.direction}
+          stops={this.state.stops}
+          onSelectStop={this.onSelectStop} />
       </div>
     );
   }

@@ -1,9 +1,22 @@
 import React from 'react';
 
 class RouteStop extends React.Component {
+  constructor() {
+    super();
+    this.handleOnChange = this.handleOnChange.bind(this);
+  }
+
+  handleOnChange(e) {
+    const value = e.target.value;
+    const stop = this.props.stops.filter((stop) => stop.stpid === value)[0];
+    this.props.onSelectStop(stop);
+  }
+
   renderStops(stop) {
     return (
-      <option value={stop.stpid} key={stop.stpid}>{stop.stpnm}</option>
+      <option value={stop.stpid} key={stop.stpid}>
+        {stop.stpnm}
+      </option>
     );
   }
 
@@ -13,7 +26,8 @@ class RouteStop extends React.Component {
     }
 
     return (
-      <select className="routeStop" onChange={(e) => this.props.onSelectStop(e.target.value)}>
+      <select className="routeStop" onChange={this.handleOnChange}>
+        <option value="">Select Stop</option>
         {this.props.stops.map(this.renderStops)}
       </select>
     );

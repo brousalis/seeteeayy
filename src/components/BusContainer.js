@@ -9,15 +9,13 @@ class BusContainer extends React.Component {
 
     this.state = {
       time: new Date(),
-      stops: []
+      predictions: []
     };
 
     this.renderStop = this.renderStop.bind(this);
   }
 
   componentWillMount() {
-    this.api = CTA;
-
     this.timer = setInterval(
       () => this.tick(),
       1000
@@ -25,21 +23,28 @@ class BusContainer extends React.Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timer)
+    clearInterval(this.timer);
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps)
     if (!nextProps.stop) {
       return null;
     }
 
-    this.api.predictionsByStop({stopIds: [nextProps.stop.stpid]}, (err, data) => {
-      this.setState({stops: data});
+    const stops = {stopIds: [nextProps.stop.stpid]};
+
+    CTA.predictionsByStop(stops, (err, data) => {
+      if (data) {
+        this.setState({predictions: data});
+      } else {
+        this.setState({predictions: []});
+      }
     });
   }
 
   tick() {
-    this.setState({time: new Date()})
+    this.setState({time: new Date()});
   }
 
   renderStop(stop) {
@@ -57,7 +62,9 @@ class BusContainer extends React.Component {
       <div>
         <h1 className="busStop">{this.props.stop.stpnm}</h1>
         <div>{this.state.time.toLocaleTimeString()}</div>
-        {this.state.stops.map(this.renderStop)}
+        {this.state.predictions.length > 0
+          ? this.state.predictions.map(this.renderStop)
+          : <p>No service at this time</p>}
       </div>
     );
   }

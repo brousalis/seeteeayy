@@ -4,7 +4,7 @@ import Loading from './Loading';
 class Route extends React.Component {
   renderRoute(route) {
     return (
-        <option
+      <option
 				value={route.rt}
 				key={route.rt}>
 				{route.rt} - {route.rtnm}
@@ -18,7 +18,7 @@ class Route extends React.Component {
     }
 
     return (
-      <select defaultValue="null" onChange={(e) => this.props.onSelectRoute(e.target.value)}>
+      <select onChange={(e) => this.props.onSelectRoute(e.target.value)}>
         <option value="null">Select a Route</option>
         {this.props.routes.map(this.renderRoute)}
       </select>
