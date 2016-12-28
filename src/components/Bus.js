@@ -6,7 +6,7 @@ class Bus extends Component {
   render() {
     let timeUntil = minutesUntil(this.props.time, this.props.prdtm);
 
-    timeUntil = timeUntil <= 1 ? "APPROACHING" : `${timeUntil} minutes`;
+    timeUntil = timeUntil <= 1 ? "APPROACHING" : `${timeUntil} min`;
 
     if (timeUntil <= 0) {
       return null;
